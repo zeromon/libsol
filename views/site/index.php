@@ -2,52 +2,48 @@
 
 /* @var $this yii\web\View */
 
-$this->title = 'My Yii Application';
+$this->title = 'libsol';
 ?>
 <div class="site-index">
-
-    <div class="jumbotron">
-        <h1>Congratulations!</h1>
-
-        <p class="lead">You have successfully created your Yii-powered application.</p>
-
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
+<div class="container">
+    <div class="row">
+    <h1>Library for solution programing</h1>
     </div>
-
-    <div class="body-content">
-
-        <div class="row">
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
-            </div>
-        </div>
-
+    <div class="row">
+    <div contenteditable="true" id="content-preview"></div>
     </div>
+        <!-- <figure>
+            <figcaption>Your code title</figcaption>
+            <pre>
+                <code>
+                your code here
+                </code>
+            </pre>
+        </figure> -->
+    </div>
+    <div class="row">
+    <button id="btn-br" class="btn btn-primary">br</button> <button id="btn-code" class="btn btn-primary">code</button>
+    <!-- <div contenteditable="true" id="content-txt">testst</div>
+    </div> -->
+    <textarea class="form-control" name="" id="content-txt" cols="30" rows="10">testst</textarea>
+    <button id="btn-submit" class="btn btn-success">Submit</button>
 </div>
+</div>
+<script type="text/javascript">
+$('#btn-br').click(function(){
+    let valTextarea = $('#content-txt').val();
+    let updateText = valTextarea+'<b></b>';
+    $('#content-txt').val(updateText);
+});
+
+$('#btn-code').click(function(){
+    let valTextarea = $('#content-txt').val();
+    let templateCode = '<figure><figcaption>Your code title</figcaption><pre><code>your code here</code></pre></figure>';
+    let updateText = valTextarea+templateCode;
+    $('#content-txt').val(updateText);
+});
+
+$('#btn-submit').click(function(){
+    $('#content-preview').html($('#content-txt').val());
+});
+</script>

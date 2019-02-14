@@ -4,7 +4,8 @@ $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 
 $config = [
-    'id' => 'basic',
+    'id' => 'libsol',
+    'name' => 'Libsol',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'aliases' => [
@@ -15,6 +16,13 @@ $config = [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'teststat',
+        ],
+        'assetManager' => [
+            'bundles' => [
+                'yii\web\JqueryAsset' => [
+                    'jsOptions' => [ 'position' => \yii\web\View::POS_HEAD ],
+                ],
+            ],
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
