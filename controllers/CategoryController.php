@@ -3,17 +3,16 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Solution;
 use app\models\Category;
-use app\models\SolutionSearch;
+use app\models\CategorySearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * SolutionController implements the CRUD actions for Solution model.
+ * CategoryController implements the CRUD actions for Category model.
  */
-class SolutionController extends Controller
+class CategoryController extends Controller
 {
     /**
      * @inheritdoc
@@ -31,12 +30,12 @@ class SolutionController extends Controller
     }
 
     /**
-     * Lists all Solution models.
+     * Lists all Category models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new SolutionSearch();
+        $searchModel = new CategorySearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -46,7 +45,7 @@ class SolutionController extends Controller
     }
 
     /**
-     * Displays a single Solution model.
+     * Displays a single Category model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -59,15 +58,13 @@ class SolutionController extends Controller
     }
 
     /**
-     * Creates a new Solution model.
+     * Creates a new Category model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Solution();
-
-        $category_model = Category::find()->all();
+        $model = new Category();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index']);
@@ -75,12 +72,11 @@ class SolutionController extends Controller
 
         return $this->render('create', [
             'model' => $model,
-            'category_model' => $category_model,
         ]);
     }
 
     /**
-     * Updates an existing Solution model.
+     * Updates an existing Category model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -90,22 +86,17 @@ class SolutionController extends Controller
     {
         $model = $this->findModel($id);
 
-        $category_model = Category::find()->all();
-
-        if ($model->load(Yii::$app->request->post())) {
-            $model->solution_answer = ($model->solution_answer!='') ? htmlspecialchars($model->solution_answer):'';
-            if($model->save())
-                return $this->redirect(['view', 'id' => $model->id_solution]);
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id_category]);
         }
 
         return $this->render('update', [
             'model' => $model,
-            'category_model' => $category_model,
         ]);
     }
 
     /**
-     * Deletes an existing Solution model.
+     * Deletes an existing Category model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -119,15 +110,15 @@ class SolutionController extends Controller
     }
 
     /**
-     * Finds the Solution model based on its primary key value.
+     * Finds the Category model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Solution the loaded model
+     * @return Category the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Solution::findOne($id)) !== null) {
+        if (($model = Category::findOne($id)) !== null) {
             return $model;
         }
 

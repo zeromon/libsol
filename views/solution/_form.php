@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Solution */
@@ -14,9 +15,11 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'solution_question')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'solution_answer')->textarea(['rows' => 6]) ?>
+    <?= Html::activeDropDownList($model, 'id_category',
+      ArrayHelper::map($category_model, 'id_category', 'name_category'),['prompt' => 'select category', 'class' => 'form-control']) ?>
 
-    <?= $form->field($model, 'id_category')->textInput() ?>
+    <!-- <a id="btn-code" class="btn btn-primary">Code</a> -->
+    <?= $form->field($model, 'solution_answer')->textarea(['rows' => 6]) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

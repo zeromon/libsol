@@ -45,7 +45,7 @@ class Solution extends \yii\db\ActiveRecord
     {
         return [
             'id_solution' => 'Id Solution',
-            'solution_question' => 'Solution Question',
+            'solution_question' => 'Problem',
             'solution_answer' => 'Solution Answer',
             'id_category' => 'Id Category',
         ];

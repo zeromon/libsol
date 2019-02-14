@@ -4,19 +4,18 @@ use yii\helpers\Html;
 
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Solution */
+/* @var $model app\models\Category */
 
-$this->title = 'Create Solution';
-$this->params['breadcrumbs'][] = ['label' => 'Solutions', 'url' => ['index']];
+$this->title = 'Create Category';
+$this->params['breadcrumbs'][] = ['label' => 'Categories', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="solution-create">
+<div class="category-create">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <?= $this->render('_form', [
         'model' => $model,
-        'category_model' => $category_model,
     ]) ?>
 
 </div>
