@@ -21,6 +21,8 @@ use yii\helpers\ArrayHelper;
     <!-- <a id="btn-code" class="btn btn-primary">Code</a> -->
     <?= $form->field($model, 'solution_answer')->textarea(['rows' => 6]) ?>
 
+    <?= $form->field($model, 'solution_refrence')->textInput(['maxlength' => true, 'placeholder' => 'link refrence']) ?>
+
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>

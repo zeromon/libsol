@@ -12,6 +12,7 @@ use app\models\Solution;
  */
 class SolutionSearch extends Solution
 {
+    public $name_category;
     /**
      * @inheritdoc
      */
@@ -19,7 +20,7 @@ class SolutionSearch extends Solution
     {
         return [
             [['id_solution', 'id_category'], 'integer'],
-            [['solution_question', 'solution_answer'], 'safe'],
+            [['solution_question', 'solution_answer', 'name_category'], 'safe'],
         ];
     }
 
@@ -45,8 +46,21 @@ class SolutionSearch extends Solution
 
         // add conditions that should always apply here
 
+        $query->joinWith('category');
+
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort'=>[
+                'defaultOrder' => ['id_solution' => SORT_ASC],
+                'attributes' => [
+                    'id_solution',
+                    'solution_question',
+                    'name_category' => [
+                        'asc' => ['category.name_category' => SORT_ASC],
+						'desc' => ['category.name_category' => SORT_DESC],
+                    ],
+                ],
+            ]
         ]);
 
         $this->load($params);
@@ -64,6 +78,7 @@ class SolutionSearch extends Solution
         ]);
 
         $query->andFilterWhere(['like', 'solution_question', $this->solution_question])
+            ->andFilterWhere(['like', 'category.name_category', $this->name_category])
             ->andFilterWhere(['like', 'solution_answer', $this->solution_answer]);
 
         return $dataProvider;

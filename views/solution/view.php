@@ -38,6 +38,7 @@ $this->params['breadcrumbs'][] = $model->solution_question;
                 },
                 'format' => 'raw',
             ],
+            'solution_refrence',
         ],
     ]) ?>
 

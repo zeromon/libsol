@@ -31,9 +31,9 @@ class Solution extends \yii\db\ActiveRecord
     {
         return [
             [['solution_question', 'id_category'], 'required'],
-            [['solution_answer'], 'string'],
+            [['solution_answer', 'solution_refrence'], 'string'],
             [['id_category'], 'integer'],
-            [['solution_question'], 'string', 'max' => 500],
+            [['solution_question','solution_refrence'], 'string', 'max' => 500],
             [['id_category'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['id_category' => 'id_category']],
         ];
     }
